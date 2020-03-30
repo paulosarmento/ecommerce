@@ -671,6 +671,20 @@ $app->post("/profile/change-password", function(){
 	exit;
 
 });
+$app->get("/products", function(){
+
+	$products = Product::listAll();
+
+	$page = new Page();
+
+	$page->setTpl("products", [
+		'products'=>Product::checkList($products)
+		
+	]);
+
+
+
+});
 
 
 ?>
