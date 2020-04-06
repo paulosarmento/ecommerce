@@ -390,7 +390,10 @@ $app->get("/forgot/reset", function()
 
 	$page = new Page();
 
-	$page->setTpl("forgot-reset");
+	$page->setTpl("forgot-reset", array (
+		"name" => $user["desperson"],
+		"code" => $_GET["code"]
+	));
 
 });
 
@@ -503,8 +506,8 @@ $app->get("/boleto/:idorder", function($idorder)
 	$order->get((int)$idorder);
 
 	// DADOS DO BOLETO PARA O SEU CLIENTE
-	$dias_de_prazo_para_pagamento = 10;
-	$taxa_boleto = 5.00;
+	$dias_de_prazo_para_pagamento = 5;
+	$taxa_boleto = 0;
 	$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
 
 	$valor_cobrado = formatPrice($order->getvltotal()); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
@@ -525,13 +528,13 @@ $app->get("/boleto/:idorder", function($idorder)
 	$dadosboleto["endereco2"] = $order->getdescity() . " - " . $order->getdesstate() . " - " . $order->getdescountry() . " -  CEP: " . $order->getdeszipcode();
 
 	// INFORMACOES PARA O CLIENTE
-	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Hcode E-commerce";
+	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Solar Esportes";
 	$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ 0,00";
 	$dadosboleto["demonstrativo3"] = "";
 	$dadosboleto["instrucoes1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
-	$dadosboleto["instrucoes2"] = "- Receber até 10 dias após o vencimento";
-	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: suporte@hcode.com.br";
-	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto Loja Hcode E-commerce - www.hcode.com.br";
+	$dadosboleto["instrucoes2"] = "- Receber até 5 dias após o vencimento";
+	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: mhelena17@bol.com.br";
+	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto Loja Solar Esportes - www.solaresportes.com.br";
 
 	// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
 	$dadosboleto["quantidade"] = "";
@@ -545,19 +548,19 @@ $app->get("/boleto/:idorder", function($idorder)
 
 
 	// DADOS DA SUA CONTA - ITAÚ
-	$dadosboleto["agencia"] = "1690"; // Num da agencia, sem digito
-	$dadosboleto["conta"] = "48781";	// Num da conta, sem digito
+	$dadosboleto["agencia"] = "3828"; // Num da agencia, sem digito
+	$dadosboleto["conta"] = "1006473";	// Num da conta, sem digito
 	$dadosboleto["conta_dv"] = "2"; 	// Digito do Num da conta
 
 	// DADOS PERSONALIZADOS - ITAÚ
-	$dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
+	$dadosboleto["carteira"] = "25";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
 
 	// SEUS DADOS
-	$dadosboleto["identificacao"] = "Hcode Treinamentos";
+	$dadosboleto["identificacao"] = "Solar Esportes";
 	$dadosboleto["cpf_cnpj"] = "24.700.731/0001-08";
-	$dadosboleto["endereco"] = "Rua Ademar Saraiva Leão, 234 - Alvarenga, 09853-120";
-	$dadosboleto["cidade_uf"] = "São Bernardo do Campo - SP";
-	$dadosboleto["cedente"] = "HCODE TREINAMENTOS LTDA - ME";
+	$dadosboleto["endereco"] = "Rua Capitão Manoel Salgado, 164 - Centro, 37530-000";
+	$dadosboleto["cidade_uf"] = "Brazópolis - MG";
+	$dadosboleto["cedente"] = "SOLAR ESPORTES";
 
 	// NÃO ALTERAR!
 	$path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "res" . DIRECTORY_SEPARATOR . "boletophp" . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR;

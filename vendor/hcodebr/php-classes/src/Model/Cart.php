@@ -211,8 +211,8 @@ class Cart extends Model {
 			$qs = http_build_query([
 				'nCdEmpresa'=>'',
 				'sDsSenha'=>'',
-				'nCdServico'=>'40010',
-				'sCepOrigem'=>'09853120',
+				'nCdServico'=>'41106',
+				'sCepOrigem'=>'37530000',
 				'sCepDestino'=>$nrzipcode,
 				'nVlPeso'=>$totals['vlweight'],
 				'nCdFormato'=>'1',
@@ -220,9 +220,9 @@ class Cart extends Model {
 				'nVlAltura'=>$totals['vlheight'],
 				'nVlLargura'=>$totals['vlwidth'],
 				'nVlDiametro'=>'0',
-				'sCdMaoPropria'=>'S',
+				'sCdMaoPropria'=>'N',
 				'nVlValorDeclarado'=>$totals['vlprice'],
-				'sCdAvisoRecebimento'=>'S'
+				'sCdAvisoRecebimento'=>'N'
 			]);
 
 			$xml = simplexml_load_file("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo?".$qs);

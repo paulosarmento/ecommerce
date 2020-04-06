@@ -250,7 +250,7 @@ class User extends Model {
 				}
 
 
-				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha da Store", "forgot", array(
+				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha de Solo Esportes", "forgot", array(
 					"name"=>$data["desperson"],
 					"link"=>$link
 				));
@@ -301,7 +301,7 @@ class User extends Model {
 
 	}
 
-	public static function setFogotUsed($idrecovery)
+	public static function setForgotUsed($idrecovery)
 	{
 
 		$sql = new Sql();
