@@ -7,9 +7,9 @@
                     <h2>Solar Esportes</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                     <div class="footer-social">
-                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/SolarEsportes" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/solaresportes/?hl=pt-br" target="_blank"><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UC75u9Xb9A1yAFN-tEkecVOw/featured" target="_blank"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
             </div>

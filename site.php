@@ -676,6 +676,8 @@ $app->post("/profile/change-password", function(){
 });
 $app->get("/products", function(){
 
+	
+
 	$products = Product::listAll();
 
 	$page = new Page();
