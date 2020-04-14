@@ -5,7 +5,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="footer-about-us">
                     <h2>Solar Esportes</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                    <p> Loja de materiais esportivos, fundada em 2010, trabalhamos com as principais marcas do mercado, trazendoo que há de melhor em materias esportivos visando a qualidade e bem estar de nossos clientes.</p>
                     <div class="footer-social">
                         <a href="https://www.facebook.com/SolarEsportes" target="_blank"><i class="fa fa-facebook"></i></a>
                         <a href="https://www.instagram.com/solaresportes/?hl=pt-br" target="_blank"><i class="fa fa-instagram"></i></a>

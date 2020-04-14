@@ -258,12 +258,12 @@ $app->post("/checkout", function()
 		'vltotal'=>$cart->getvltotal()
 
 	]);
-
 	
-
 	$order->save();
 
-	header("Location: /order/".$order->getidorder());
+	$order->toSession();
+
+	header("Location: /payment");
 	exit;
 
 

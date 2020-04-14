@@ -15,6 +15,10 @@ class Config {
     const SANDBOX_SESSION = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
     const PRODUCTION_SESSIONS = "https://ws.pagseguro.uol.com.br/v2/sessions";
 
+    const SANDBOX_URL_JS = "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
+    const PRODUCTION_SESSIONS_URL_JS = "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
+
+
     public static function getAuthentication():array
     {
         if(Config::SANDBOX === true)
@@ -35,7 +39,13 @@ class Config {
     public static function getUrlSessions():string
     {
         return (Config::SANDBOX === true) ? Config::SANDBOX_SESSION : Config::PRODUCTION_SESSIONS;
-     }
+    }
+
+    public static function getUrlJS()
+    {
+        return (Config::SANDBOX === true) ? Config::SANDBOX_URL_JS : Config::PRODUCTION_SESSIONS_URL_JS;
+
+    }
 
 
 
