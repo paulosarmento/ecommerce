@@ -2,10 +2,28 @@
 
 use \Hcode\Page;
 use \Hcode\Model\User;
-
 use \Hcode\PagSeguro\Config;
 use \Hcode\Model\Order;
 use Hcode\PagSeguro\Transporter;
+
+
+$app->post('/payment/credit', function(){
+
+    User::VerifyLogin(false);
+
+    $order = new Order();
+
+    $order->getFromSession();
+
+    $address = $order->getAddress();
+
+    $cart = $order->getCart();
+
+    var_dump($order->getValues());
+    var_dump($address->getValues());
+    var_dump($cart->getValues());
+
+});
 
 $app->get("/payment", function(){
 

@@ -466,26 +466,34 @@ scripts.push(function(){
 
 
             });
-            console.log(params);
 
             PagSeguroDirectPayment.createCardToken({
 
 
                 cardNumber: params.number, // Número do cartão de crédito
-                brand: params.brand, // Bandeira do cartão
+                //brand: params.brand, // Bandeira do cartão
                 cvv: params.cvv, // CVV do cartão
                 expirationMonth: params.month, // Mês da expiração do cartão
                 expirationYear: params.year, // Ano da expiração do cartão, é necessário os 4 dígitos.
                 success: function(response) {
                         // Retorna o cartão tokenizado.
+                    params.token = response.card.token;
+                    params.hash = PagSeguroDirectPayment.getSenderHash();
+
                     
-                    console.log("TOKEN", response);
-                    console.log("HASH", PagseguroDirectPayment.onSenderHashReady());
-                    console.log("params", params);
+
+                    $.post(
+                        "/payment/credit",
+                        $.param(params),
+                        function(r){
+                            console.log(r);                            
+                        }
+                    );
+
                 },
                 error: function(response) {
                             // Callback para chamadas que falharam.
-                    var errors = [];
+                    var errors = []; 
 
                     for (var code in response.errors)
                     {
