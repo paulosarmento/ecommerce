@@ -31,7 +31,7 @@ class Phone{
        $phone = $dom->createElement("phone");
        $phone = $dom->appendChild($phone);
 
-       $areaCode = $dom->createElement("are$areaCode", $this->$areaCode);
+       $areaCode = $dom->createElement("areaCode", $this->areaCode);
        $areaCode = $phone->appendChild($areaCode);
 
        $number = $dom->createElement("number", $this->number);
