@@ -7,7 +7,7 @@ class Sender{
 
     private $name;
     private $cpf;
-    private $bornDate;
+    private $birthDate;
     private $phone;
     private $email;
     private $hash;
@@ -59,8 +59,8 @@ class Sender{
        $email = $dom->createElement("email", $this->email);
        $email = $sender->appendChild($email);
 
-       $bornDate = $dom->createElement("bornDate", $this->bornDate->format("d/m/y"));
-       $bornDate = $sender->appendChild($bornDate);
+       $birthDate = $dom->createElement("birthDate", $this->birthDate->format("d/m/y"));
+       $birthDate = $sender->appendChild($birthDate);
 
        $documents = $dom->createElement("documents", $this->documents);
        $documents = $sender->appendChild($documents);
