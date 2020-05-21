@@ -1,6 +1,10 @@
 <?php
 
 namespace Hcode\PagSeguro;
+use Exception;
+use DOMDocument;
+use DOMElement;
+use DateTime;
 
 class Sender{
 
@@ -26,7 +30,7 @@ class Sender{
         {
             throw new Exception("Informe o nome do comprador");
         }
-        if(!filter_var($email, FILTER_VARLIDATE_EMAIL))
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
         {
             throw new Exception("O e-mail informado não é válido");
         }
@@ -45,43 +49,41 @@ class Sender{
 
     }
 
-    public function getDomElement():DOMElement
+    public function getDOMElement():DOMElement
    {
 
-       $dom = new DOMDocument();
+    $dom = new DOMDocument();
 
-       $sender = $dom->createElement("sender");
-       $sender = $dom->appendChild($sender);
+    $sender = $dom->createElement("sender");
+    $sender = $dom->appendChild($sender);
 
-       $name = $dom->createElement("name", $this->name);
-       $name = $sender->appendChild($name);
+    $name = $dom->createElement("name", $this->name);
+    $name = $sender->appendChild($name);
 
-       $email = $dom->createElement("email", $this->email);
-       $email = $sender->appendChild($email);
+    $email = $dom->createElement("email", $this->email);
+    $email = $sender->appendChild($email);
 
-       $birthDate = $dom->createElement("birthDate", $this->birthDate->format("d/m/y"));
-       $birthDate = $sender->appendChild($birthDate);
+    $bornDate = $dom->createElement("bornDate", $this->bornDate->format("d/m/Y"));
+    $bornDate = $sender->appendChild($bornDate);
 
-       $documents = $dom->createElement("documents", $this->documents);
-       $documents = $sender->appendChild($documents);
+    $documents = $dom->createElement("documents");
+    $documents = $sender->appendChild($documents);
+    
+    $cpf = $this->cpf->getDomElement();
+    $cpf = $dom->importNode($cpf, true);
+    $cpf = $documents->appendChild($cpf);
 
-       $cpf = $this->cpf->getDOMElement();
-       $cpf = $dom->importNode($cpf, true);
-       $cpf = $documents->appendChild($cpf);
+    $phone = $this->phone->getDomElement();
+    $phone = $dom->importNode($phone, true);
+    $phone = $sender->appendChild($phone);
 
-       $phone = $this->phone->getDOMElement();
-       $phone = $dom->importNode($phone, true);
-       $phone = $documents->appendChild($phone);
+    $hash = $dom->createElement("hash", $this->hash);
+    $hash = $sender->appendChild($hash);
 
-       $hash = $dom->createElement("hash", $this->hash);
-       $hash = $sender->appendChild($hash);
+    $ip = $dom->createElement("ip", $this->ip);
+    $ip = $sender->appendChild($ip);
 
-       $ip = $dom->createElement("ip", $this->ip);
-       $ip = $sender->appendChild($ip);
-       
-
-       return $sender;
-
+    return $sender;
    }
 
 }

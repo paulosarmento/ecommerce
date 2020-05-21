@@ -326,6 +326,16 @@ scripts.push(function(){
     }
     });
 
+    $("#installments_field").on("change", function(){
+
+        var installment = $(this).find("option:selected").data("installment");
+
+
+        $("[name=installments_qtd]").val(installment.quantity);
+        $("[name=installments_value]").val(installment.installmentAmount);
+        $("[name=installments_total]").val(installment.totalAmount);
+    });
+
     $("#number_field").on( "change", function(){
     
         var value = $(this).val();
@@ -448,13 +458,13 @@ scripts.push(function(){
 
             e.preventDefault();
 
-            if(!isValidCPF($("#form-credit [name=cpf").val())){
+            if(!isValidCPF($("#form-credit [name=cpf]").val())){
 
                 showError("Este número de cfp não é válido");
                 return false;
             }
 
-            $("#form-credit [type=submit").attr("disabled","disabled");
+            $("#form-credit [type=submit]").attr("disabled","disabled");
 
             var formData = $(this).serializeArray();
 
@@ -480,8 +490,6 @@ scripts.push(function(){
                     params.token = response.card.token;
                     params.hash = PagSeguroDirectPayment.getSenderHash();
 
-                    
-
                     $.post(
                         "/payment/credit",
                         $.param(params),
@@ -505,7 +513,7 @@ scripts.push(function(){
                 complete: function(response) {
                         // Callback para todas chamadas.
 
-                    $("#form-credit [type=submit").removeAttr("disabled");
+                    $("#form-credit [type=submit]").removeAttr("disabled");
 
                 }
 

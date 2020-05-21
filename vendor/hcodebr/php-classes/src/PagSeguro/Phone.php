@@ -1,6 +1,9 @@
 <?php
 
 namespace Hcode\PagSeguro;
+use Exception;
+use DOMDocument;
+use DOMElement;
 
 class Phone{
  
@@ -14,7 +17,7 @@ class Phone{
         {
             throw new Exception("Informe o DDD do telefone.");
         }
-        if(!$areaCode || strlen < 11 || $areaCode > 99)
+        if(!$areaCode || $areaCode < 11 || $areaCode > 99)
         {
             throw new Exception("Informe o número do telefone");
         }
