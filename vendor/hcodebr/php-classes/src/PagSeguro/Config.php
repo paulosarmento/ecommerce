@@ -21,6 +21,8 @@ class Config {
     const MAX_INSTALLMENT_NO_INTEREST = 8;
     const MAX_INSTALLMENT = 16;
 
+    const NOTIFICATION_URL = "http://www.html5dev.com.br/payment/notification";
+
 
     public static function getAuthentication():array
     {
