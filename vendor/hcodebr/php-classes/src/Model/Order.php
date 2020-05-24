@@ -10,7 +10,6 @@ use \Hcode\Model\Address;
 class Order extends Model {
 
 	const SESSION = "OrderSession";
-
 	const SUCCESS = "Order-Success";
 	const ERROR = "Order-Error";
 
@@ -40,13 +39,21 @@ class Order extends Model {
 		$sql = new Sql();
 
 		$results = $sql->select("
-			SELECT * 
+			SELECT 
+				a.idorder, a.idcart, a.idcart, a.iduser, a.idstatus, a.idaddress, a.vltotal, a.dtregister,
+				b.desstatus,
+				c.dessessionid, c.deszipcode, c.vlfreight, c.nrdays,
+				d.idperson, d.deslogin,
+				e.desaddress, e.desnumber, e.descomplement, e.descity, e.desstate, e.descountry, e.deszipcode, e.desdistrict,
+				f.desperson, f.desemail, f.nrphone,
+				g.descode, g.vlgrossamount, g.vldiscountamount, g.vlfeeamount, g.vlnetamount, g.vlextraamount, g.despaymentlink
 			FROM tb_orders a 
 			INNER JOIN tb_ordersstatus b USING(idstatus) 
 			INNER JOIN tb_carts c USING(idcart)
 			INNER JOIN tb_users d ON d.iduser = a.iduser
 			INNER JOIN tb_addresses e USING(idaddress)
 			INNER JOIN tb_persons f ON f.idperson = d.idperson
+			LEFT JOIN tb_orderspagseguro g ON g.idorder = a.idorder
 			WHERE a.idorder = :idorder
 		", [
 			':idorder'=>$idorder
@@ -209,18 +216,21 @@ class Order extends Model {
 		];
 
 	}
+
 	public function toSession()
 	{
+
 		$_SESSION[Order::SESSION] = $this->getValues();
 
 	}
+
 	public function getFromSession()
 	{
 
 		$this->setData($_SESSION[Order::SESSION]);
 
-
 	}
+
 	public function getAddress():Address
 	{
 
@@ -230,6 +240,31 @@ class Order extends Model {
 
 		return $address;
 
+	}
+
+	public function setPagSeguroTransactionRespose(
+		string $descode, 
+		float $vlgrossamount,
+		float $vldisccountamount,
+		float $vlfeeamont,
+		float $vlnetamount,
+		float $extraamount,
+		string $despaymentlink = ""	
+	)
+	{
+
+		$sql = new Sql();
+
+		$sql->query("CALL sp_orderspagseguro_save(:idorder, :descode, :vlgrossamount, :vldisccountamount, :vlfeeamont, :vlnetamount, :extraamount, :despaymentlink)", [
+			':idorder'=>$this->getidorder(),
+			':descode'=>$descode,
+			':vlgrossamount'=>$vlgrossamount,
+			':vldisccountamount'=>$vldisccountamount,
+			':vlfeeamont'=>$vlfeeamont,
+			':vlnetamount'=>$vlnetamount,
+			':extraamount'=>$extraamount,
+			':despaymentlink'=>$despaymentlink
+		]);
 
 	}
 
