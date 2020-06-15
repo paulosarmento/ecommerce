@@ -59,6 +59,11 @@ class Cart extends Model {
 
 		$_SESSION[Cart::SESSION] = $this->getValues();
 
+	}
+	public function removeSession()
+	{
+		$_SESSION[Cart::SESSION] = NULL;
+		session_regenerate_id();
 	}	
 
 	public function getFromSessionID()
@@ -314,6 +319,7 @@ class Cart extends Model {
 		$this->setvltotal($totals['vlprice'] + (float)$this->getvlfreight());
 
 	}
+
 
 
 	

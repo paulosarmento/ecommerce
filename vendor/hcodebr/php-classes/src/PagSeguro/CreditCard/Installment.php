@@ -23,7 +23,7 @@ class Installment {
 
 			throw new Exception("Número de parcelas inválida.");
 
-		}
+		}		
 
 		if ($value <= 0)
 		{
@@ -31,7 +31,6 @@ class Installment {
 			throw new Exception("Valor total inválido.");
 
 		}
-
 		$this->quantity = $quantity;
 		$this->value = $value;
 
@@ -45,7 +44,7 @@ class Installment {
 		$installment = $dom->createElement("installment");
 		$installment = $dom->appendChild($installment);
 
-		$value = $dom->createElement("value", number_format($this->value, 2, ".", ""));
+		$value = $dom->createElement("value", number_format($this->value, 2, ".",""));
 		$value = $installment->appendChild($value);
 
 		$quantity = $dom->createElement("quantity", $this->quantity);

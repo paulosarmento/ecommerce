@@ -1,5 +1,5 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="footer-top-area">
-    <div class="zigzag-bottom"></div>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="zigzag-bottom"></div>
+<div class="footer-top-area">    
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6">
@@ -35,8 +35,8 @@
             
             <div class="col-md-3 col-sm-6">
                 <div class="footer-newsletter">
-                    <h2 class="footer-wid-title">Notícias</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus!</p>
+                    <h2 class="footer-wid-title">Fique por Dentro!</h2>
+                    <p>Seja avisado no seu e-mail quando um novo produto for lançado na loja.</p>
                     <div class="newsletter-form">
                         <form action="#">
                             <input type="email" placeholder="Escreva seu email">
@@ -103,5 +103,18 @@
         }
     });
 </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5d82a47c9f6b7a4457e266f0/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+    <!--End of Tawk.to Script-->
 </body>
 </html>

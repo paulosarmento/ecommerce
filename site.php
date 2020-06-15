@@ -263,10 +263,44 @@ $app->post("/checkout", function()
 
 	$order->toSession();
 
-	header("Location: /payment");
+	switch((int)$_POST['payment-method']){
+		case 1:
+			header("Location: /payment");
+		break;
+		case 2:
+			header("Location: /order/".$order->getidorder()."/payment-paypal");
+		break;
+
+	}
+
+	$cart->removeSession();
+
 	exit;
 
+	
 
+});
+$app->get("/order/:idorder/payment-paypal", function($idorder){
+
+	User::verifyLogin(false);
+
+	$order = new Order();
+
+	$order->get((int)$idorder);
+
+	$cart = $order->getCart();
+
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
+
+	$page->setTpl("payment-paypal", [
+		'order'=>$order->getValues(),
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts()
+
+	]);
 
 
 });
@@ -575,10 +609,11 @@ $app->get("/profile/orders", function(){
 
 	$user = User::getFromSession();
 
+
 	$page = new Page();
 
 	$page->setTpl("profile-orders", [
-		'orders'=>$user->getOrders()
+		'orders'=>$user->getOrders()		
 	]);
 
 });

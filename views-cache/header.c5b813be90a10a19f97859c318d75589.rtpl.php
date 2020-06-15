@@ -95,8 +95,12 @@
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="/products">Produtos</a></li>
                         <li><a href="/cart">Carrinho</a></li>
+                        <li><?php require $this->checkTemplate("categories-menu");?> </li>
                     </ul>
+                   
                 </div>  
+                
+                
             </div>
         </div>
     </div> <!-- End mainmenu area -->

@@ -24,7 +24,7 @@ class Config {
     const SANDBOX_URL_NOTIFICATION = "https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/";
 	const PRODUCTION_URL_NOTIFICATION =	"https://ws.pagseguro.uol.com.br/v3/transactions/notifications/";
 
-    const MAX_INSTALLMENT_NO_INTEREST = 8;
+    const MAX_INSTALLMENT_NO_INTEREST = 6;
     const MAX_INSTALLMENT = 16;
 
     const NOTIFICATION_URL = "http://www.html5dev.com.br/payment/notification";

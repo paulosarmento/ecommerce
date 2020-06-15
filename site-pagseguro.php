@@ -239,7 +239,7 @@ $app->post('/payment/credit', function(){
 
     $shipping = new Shipping($shippingAddress, (float)$cart->getvlfreight(), Shipping::PAC);
 
-    $installment = new Installment((int)$_POST["installments_qtd"], (int)$_POST["installments_value"]);
+    $installment = new Installment((int)$_POST["installments_qtd"], (float)$_POST["installments_value"]);
 
     $billingAddress = new Address(
         $address->getdesaddress(),
@@ -276,7 +276,7 @@ $app->post('/payment/credit', function(){
     
     
     Transporter::sendTransaction($payment);
-
+    
 
     echo json_encode([
         'success'=>true
@@ -295,7 +295,8 @@ $app->post('/payment/credit', function(){
     */
     
 
-    echo $dom->saveXml();
+   //$dom->saveXml();
+    
     
 
     

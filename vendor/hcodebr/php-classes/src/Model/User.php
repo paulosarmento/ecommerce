@@ -75,7 +75,11 @@ class User extends Model {
 
 		if (count($results) === 0)
 		{
-			throw new \Exception("Usuário inexistente ou senha inválida.");
+			User::setErrorRegister("Usuário inexistente ou senha inválida.");
+			//throw new \Exception("Usuário inexistente ou senha inválida.");
+			header("Location: /login");
+			exit;
+			
 		}
 
 		$data = $results[0];
@@ -85,7 +89,7 @@ class User extends Model {
 
 			$user = new User();
 
-			$data['desperson'] = $data['desperson'];
+			$data['desperson'] = utf8_encode($data['desperson']);
 
 			$user->setData($data);
 
@@ -94,7 +98,12 @@ class User extends Model {
 			return $user;
 
 		} else {
-			throw new \Exception("Usuário inexistente ou senha inválida.");
+
+			User::setError("Usuário inexistente ou senha inválida.");
+			header("Location: /login");
+			//throw new \Exception("Usuário inexistente ou senha inválida.");
+			exit;
+			
 		}
 
 	}
@@ -137,7 +146,7 @@ class User extends Model {
 		$sql = new Sql();
 
 		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
-			":desperson"=>$this->getdesperson(),
+			":desperson"=>utf8_decode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
 			":despassword"=>User::getPassswordHash($this->getdespassword()),
 			":desemail"=>$this->getdesemail(),
@@ -160,7 +169,7 @@ class User extends Model {
 
 		$data = $results[0];
 
-		$data['desperson'] = $data['desperson'];
+		$data['desperson'] = utf8_encode($data['desperson']);
 
 
 		$this->setData($data);
@@ -174,7 +183,7 @@ class User extends Model {
 
 		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 			":iduser"=>$this->getiduser(),
-			":desperson"=>$this->getdesperson(),
+			":desperson"=>utf8_decode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
 			":despassword"=>User::getPassswordHash($this->getdespassword()),
 			":desemail"=>$this->getdesemail(),
@@ -241,11 +250,11 @@ class User extends Model {
 
 				if ($inadmin === true) {
 					
-					$link = "http://www.hcodecommerce.com.br/admin/forgot/reset?code=$code";
+					$link = "http://www.solaresportes.com.br/admin/forgot/reset?code=$code";
 
 				} else {
 
-					$link = "http://www.hcodecommerce.com.br/forgot/reset?code=$code";
+					$link = "http://www.solaresportes.com.br/forgot/reset?code=$code";
 
 				}
 
